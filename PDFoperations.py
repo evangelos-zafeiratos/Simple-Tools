@@ -1,9 +1,20 @@
-# pdf_merging.py
+##################################################
+## This script asks the user to select which operation
+## (merge) or (split) on PDFs to operate.
+##################################################
+## License
+##################################################
+## Author: Evangelos Zafeiratos
+##################################################
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
+from tkinter import filedialog as fd
+import sys
 
 
 def merge_pdfs(paths, output):
+    filename1 = fd.askopenfilename()
+    filename2 = fd.askopenfilename()
     pdf_writer = PdfFileWriter()
 
     for path in paths:
@@ -33,9 +44,10 @@ def split(path, name_of_split):
 if __name__ == '__main__':
     paths = ['test.pdf', 'Git Cheat Sheet.pdf']
     while True:
-        operation = input('Which operation would you like to perform? Type "m" to merge or "s" to split: ')
-        print(operation)
-        if operation not in ['m','s']:
+        operation = input('Which operation would you like to perform? Type "m" to merge or "s" to split (or exit to terminate the program): ')
+        if operation == 'exit':
+            sys.exit()
+        elif operation not in ['m','s']:
             print('You entered an invalid symbol.\n')
             continue
         elif operation == 'm':
