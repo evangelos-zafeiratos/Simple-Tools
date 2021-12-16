@@ -2,21 +2,6 @@
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
-if __name__ == '__main__':
-    paths = ['document1.pdf', 'document2.pdf']
-    while True:
-        operation = input('Which operation would you like to perform? Type "m" to merge or "s" to split')
-        if operation not in ['m','s']:
-            print('You entered an invalid symbol.\n')
-            continue
-        elif operation == 'm':
-            merge_pdfs(paths, output='merged.pdf')
-        elif operation =='s':
-            split(path, name_of_split)
-
-    path = 'Jupyter_Notebook_An_Introduction.pdf'
-    split(path, 'jupyter_page')
-
 
 def merge_pdfs(paths, output):
     pdf_writer = PdfFileWriter()
@@ -42,3 +27,20 @@ def split(path, name_of_split):
         output = f'{name_of_split}{page}.pdf'
         with open(output, 'wb') as output_pdf:
             pdf_writer.write(output_pdf)
+
+
+
+if __name__ == '__main__':
+    paths = ['test.pdf', 'Git Cheat Sheet.pdf']
+    while True:
+        operation = input('Which operation would you like to perform? Type "m" to merge or "s" to split: ')
+        print(operation)
+        if operation not in ['m','s']:
+            print('You entered an invalid symbol.\n')
+            continue
+        elif operation == 'm':
+            merge_pdfs(paths, output='merged.pdf')
+            break
+        elif operation =='s':
+            split(path, name_of_split)
+            break
